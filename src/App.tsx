@@ -20,7 +20,7 @@ const AppLogo = styled.div`
   animation: ${rotate360} infinite 1s linear;
   height: 80px;
   width: 80px;
-`
+`;
 
 interface IChuck {
   categories: string[];
@@ -47,7 +47,7 @@ const App: React.FunctionComponent = () => {
   return (
       <div className="App">
         <Header className="App-header">
-          {!data && <AppLogo />}
+          {!data && <AppLogo id="loader" />}
           {data && <img src={data.icon_url} className="App-logo" alt="logo"/>}
           <p>
             {data && data.value}
