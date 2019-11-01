@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styled, { keyframes } from 'styled-components';
+import { IChuck } from './types/chuck';
+import ChuckComponent from './components/ChuckComponent';
 import './App.css';
 
 const Header = styled.div`
@@ -22,16 +24,6 @@ const AppLogo = styled.div`
   width: 80px;
 `;
 
-interface IChuck {
-  categories: string[];
-  created_at: string;
-  icon_url: string;
-  id: string;
-  updated_at: string;
-  url: string;
-  value: string;
-}
-
 const App: React.FunctionComponent = () => {
   const [data, setData] = useState<IChuck>();
 
@@ -45,13 +37,10 @@ const App: React.FunctionComponent = () => {
   }, []);
 
   return (
+
       <div className="App">
         <Header className="App-header">
-          {!data && <AppLogo id="loader" />}
-          {data && <img src={data.icon_url} className="App-logo" alt="logo"/>}
-          <p>
-            {data && data.value}
-          </p>
+          {!data ? <AppLogo id="loader" /> : <ChuckComponent data={data} />}
         </Header>
       </div>
   );
